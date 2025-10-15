@@ -34,6 +34,7 @@ You are an expert technical writer. Create a clear, actionable instruction file 
 - Define what metadata must be captured with each AI-assisted artifact.
 - Define the logging workflow for conversational context and outputs.
 - Provide a template and a quality checklist.
+- Require updating the top-level README.md with a brief entry whenever this process generates a new file (what it is, where it lives, and a one-line purpose), including a link to the new artifact.
 
 ## Required provenance metadata (for every AI-assisted artifact)
 
@@ -128,7 +129,7 @@ Tip: To keep empty folders tracked by Git, you may add a `.gitkeep` file inside 
 
 ### `conversation.md` template
 
-~~~markdown
+````markdown
 # AI Conversation Log
 
 - Session ID: <uuid or slug>
@@ -153,7 +154,7 @@ Tip: To keep empty folders tracked by Git, you may add a `.gitkeep` file inside 
 ```
 
 <!-- Repeat for each exchange -->
-~~~
+````
 
 ## Provenance template for non-Markdown artifacts
 
@@ -174,7 +175,7 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar:
   - <task>: <hh:mm:ss>
 - Total Duration: <hh:mm:ss>
 - Source Conversation Log: <relative path>
-````
+```
 
 ## Capturing task durations
 
@@ -187,6 +188,7 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar:
 - Place `ai-assisted-output.instructions.md` in `.github/instructions`.
 - Place logs in `ai-logs/yyyy/mm/dd/<session-id>/`.
 - Prefer lowercase for artifact filenames; include context (e.g., `uc-001-enrollment-diagram.md`).
+- When creating any new AI-assisted artifact, add a short bullet to the project `README.md` that links to the artifact and states its purpose. If a section like "AI-Assisted Artifacts" exists, add to it; otherwise, create one.
 
 ## Example
 
@@ -200,6 +202,7 @@ Provide a brief filled example showing a Markdown file with front matter, and a 
 - Conversation log saved under `ai-logs/` and referenced.
 - Sensitive data not included in prompts or outputs.
 - Filenames and paths follow the conventions.
+- Project `README.md` updated to reference any newly generated artifact (with link and one-line description).
 
 ## Deliverable
 
