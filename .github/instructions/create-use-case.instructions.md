@@ -237,6 +237,7 @@ sequenceDiagram
 ## Naming and File Conventions
 
 - File name: `use-case-<kebab-case-title>.md` (e.g., `use-case-reset-user-password.md`).
+- Store use case files under `Model/use-cases/`.
 - One use case per file.
 - Place diagrams inline as Mermaid code blocks within the file.
 - Keep lines under ~120 characters where feasible.

@@ -177,6 +177,7 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar 
 - This instruction file lives at `.github/instructions/ai-assisted-output.instructions.md`.
 - Save logs under `ai-logs/yyyy/mm/dd/<session-id>/`.
 - Prefer lowercase for artifact filenames; include context (e.g., `uc-001-enrollment-diagram.md`).
+- When creating any new AI-assisted artifact, add a short bullet to the project `README.md` that links to the artifact and states its purpose. If a section like "AI-Assisted Artifacts" exists, add to it; otherwise, create one.
 
 ## Example
 
@@ -228,6 +229,7 @@ Matching `conversation.md` header:
 - [ ] Filenames and paths follow the conventions.
 - [ ] Sidecar `.meta.md` used when front matter isn’t supported.
 - [ ] Example renders correctly in Markdown preview.
+- [ ] Project `README.md` updated to reference any newly generated artifact (with link and one-line description).
 
 ## Security and Privacy
 
