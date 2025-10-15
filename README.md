@@ -76,6 +76,7 @@ A running list of notable AI-assisted outputs with links and one-line descriptio
 - `.github/instructions/instruction-standards.instruction.md` — Guide to create consistent instruction files.
 - `.github/instructions/ai-assisted-output.instructions.md` — Policy for provenance and AI chat logging.
 - `.github/instructions/prompt-standards.instructions.md` — Standards for prompt files and metadata.
+- `Model/use-cases/derived-use-cases.index.md` — Index of use cases derived from `Model/orm/academia.txt` (6 initial use cases).
 
 (When you add a new AI-assisted artifact, append it here.)
 
