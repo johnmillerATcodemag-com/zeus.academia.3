@@ -174,7 +174,7 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar 
 
 ## Placement and Naming
 
-- This instruction file lives at `.github/instructions/ai-assisted-output-instructions.md`.
+- This instruction file lives at `.github/instructions/ai-assisted-output.instructions.md`.
 - Save logs under `ai-logs/yyyy/mm/dd/<session-id>/`.
 - Prefer lowercase for artifact filenames; include context (e.g., `uc-001-enrollment-diagram.md`).
 
