@@ -8,7 +8,7 @@ prompt_metadata:
   version: 1.0.0
   created: 2025-10-14
   updated: 2025-10-14
-  output_path: .github/instruction/instruction-file-authoring.instruction.md
+  output_path: .github/instructions/instruction-standards.instruction.md
   category: documentation
   tags: [instructions, documentation, authoring-guide, governance, template]
   output_format: markdown
@@ -116,7 +116,7 @@ Provide this template as a fenced Markdown block for users to copy:
 
 ## File Placement and Naming
 
-- Folder: `.github/instruction/`
+- Folder: `.github/instructions/`
 - Filename: `<topic-name>.instruction.md`
 
 ## Versioning and Ownership
@@ -174,7 +174,7 @@ $ tool lint
 - Steps are ordered and testable
 - Examples render/run
 - Output path and format are explicit
-- File lives under `.github/instruction/` and ends with `.instruction.md`
+- File lives under `.github/instructions/` and ends with `.instruction.md`
 
 ## Versioning and Ownership
 
@@ -190,6 +190,6 @@ $ tool lint
 
 - Includes all sections listed above
 - Uses kebab-case filename ending with `.instruction.md`
-- Stored under `.github/instruction/`
+- Stored under `.github/instructions/`
 - Renders correctly in Markdown preview and is self-contained
 - Contains a copy-paste template and a quality checklist
