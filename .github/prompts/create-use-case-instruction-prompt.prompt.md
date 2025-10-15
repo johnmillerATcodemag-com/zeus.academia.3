@@ -16,7 +16,7 @@ prompt_metadata:
 
 # Prompt to create a prompt that will create an instruction file for creating use cases in Markdown files
 
-This is prompt 0, hand-written to seed the process by creating the downstream prompt used to generate the authoring instructions.
+This is prompt 0, hand-written to seed the process by creating the downstream prompt used to generate the authoring instructions. It was then updated by the instructions for creating prompts.
 
 ## Output requirements
 
