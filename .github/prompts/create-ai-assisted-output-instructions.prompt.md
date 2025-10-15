@@ -8,27 +8,19 @@ prompt_metadata:
   version: 1.0.0
   created: 2025-10-14
   updated: 2025-10-14
-  output_path: .github/instructions/ai-assisted-output-instructions.md
+  output_path: .github/instructions/ai-assisted-output.instructions.md
   category: documentation
   tags: [ai, provenance, logging, governance]
   output_format: markdown
 ---
 
-# Prompt: Generate AI-Assisted Output Instructions (Markdown)
+# Generate AI-Assisted Output Instructions (Markdown)
 
 You are an expert technical writer. Create a clear, actionable instruction file (Markdown) that contributors must follow whenever they generate AI-assisted output for this repository.
 
 ## Output requirements
 
-- Create or overwrite the file at: `.github/instructions/ai-assisted-output-instructions.md`.
-
-# Prompt: Generate AI-Assisted Output Instructions (Markdown)
-
-You are an expert technical writer. Create a clear, actionable instruction file (Markdown) that contributors must follow whenever they generate AI-assisted output for this repository.
-
-## Output requirements
-
-- Create or overwrite the file at: `.github/instructions/ai-assisted-output-instructions.md`.
+- Create or overwrite the file at: `.github/instructions/ai-assisted-output.instructions.md`.
 - Format strictly as Markdown with headings and lists.
 - Include a short introduction on why provenance and logging matter.
 - Provide a table of contents.
@@ -108,7 +100,7 @@ $yyyy = $date.ToString('yyyy')
 $mm   = $date.ToString('MM')
 $dd   = $date.ToString('dd')
 $sessionId = [guid]::NewGuid().ToString()
-$base = "AI-logs/$yyyy/$mm/$dd/$sessionId"
+$base = "ai-logs/$yyyy/$mm/$dd/$sessionId"
 
 New-Item -ItemType Directory -Path $base, "$base/artifacts" -Force | Out-Null
 New-Item -ItemType File -Path "$base/conversation.md", "$base/summary.md" -Force | Out-Null
@@ -123,7 +115,7 @@ yyyy=$(date +%Y)
 mm=$(date +%m)
 dd=$(date +%d)
 sessionId=$(uuidgen 2>/dev/null || cat /proc/sys/kernel/random/uuid)
-base="AI-logs/$yyyy/$mm/$dd/$sessionId"
+base="ai-logs/$yyyy/$mm/$dd/$sessionId"
 
 mkdir -p "$base/artifacts"
 : > "$base/conversation.md"
@@ -136,7 +128,7 @@ Tip: To keep empty folders tracked by Git, you may add a `.gitkeep` file inside 
 
 ### `conversation.md` template
 
-```markdown
+~~~markdown
 # AI Conversation Log
 
 - Session ID: <uuid or slug>
@@ -149,20 +141,19 @@ Tip: To keep empty folders tracked by Git, you may add a `.gitkeep` file inside 
 ## Exchanges
 
 1. [<timestamp>] USER
-```
 
-   <prompt text>
-   ```
+```text
+<prompt text>
+```
 
 [<timestamp>] AI
 
-```
+```text
 <response excerpt or full>
 ```
 
 <!-- Repeat for each exchange -->
-
-````
+~~~
 
 ## Provenance template for non-Markdown artifacts
 
@@ -193,7 +184,7 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar:
 
 ## Placement and naming
 
-- Place `ai-assisted-output-instructions.md` in `.github/instructions`.
+- Place `ai-assisted-output.instructions.md` in `.github/instructions`.
 - Place logs in `ai-logs/yyyy/mm/dd/<session-id>/`.
 - Prefer lowercase for artifact filenames; include context (e.g., `uc-001-enrollment-diagram.md`).
 
