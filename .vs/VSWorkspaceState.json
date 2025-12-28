@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\docs",
+    "\\Model",
+    "\\Model\\orm",
+    "\\Model\\Report",
+    "\\Model\\use-cases"
+  ],
+  "SelectedNode": "\\Model\\orm\\academia.orm",
+  "PreviewInSolutionExplorer": false
+}

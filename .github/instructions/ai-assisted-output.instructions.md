@@ -10,8 +10,9 @@ This guide defines how contributors must create, record, and commit AI-assisted 
 - [Standard Metadata Front Matter (Preferred)](#standard-metadata-front-matter-preferred)
 - [AI Chat Logging Workflow](#ai-chat-logging-workflow)
   - [Folder Layout](#folder-layout)
-  - [Scaffold the Log Folders](#scaffold-the-log-folders)
-  - [conversationmd Template](#conversationmd-template)
+  - [Scaffold the Log Folders (Required)](#scaffold-the-log-folders-required)
+  - [conversation.md Template](#conversationmd-template)
+  - [Session Persistence and Resume](#session-persistence-and-resume)
 - [Provenance Template for Non-Markdown Artifacts](#provenance-template-for-non-markdown-artifacts)
 - [Capturing Task Durations](#capturing-task-durations)
 - [Placement and Naming](#placement-and-naming)
@@ -28,6 +29,15 @@ Contributors generating or curating AI-assisted content: code, documents, diagra
 - What metadata must be captured with each AI-assisted artifact.
 - How to log conversational context and outputs.
 - Ready-to-copy templates and a quality checklist.
+
+## Before You Start (Mandatory)
+
+You must pre-create an AI log session before generating any AI-assisted artifact:
+
+- Create a session folder under `ai-logs/yyyy/mm/dd/<session-id>/`.
+- Create seed files: `conversation.md` and `summary.md` (you can start with headers and fill as you go).
+- Record the session ID so subsequent steps can reference it consistently (see Session Persistence below).
+- Do not generate artifacts until the session folder exists. If it does not exist, refuse and scaffold first.
 
 ## Required Provenance Metadata
 
@@ -86,7 +96,7 @@ All AI chat transcripts and key outputs must be saved under `ai-logs/` in a date
 
 Tip: To keep empty folders tracked by Git, add a `.gitkeep` file inside them.
 
-### Scaffold the Log Folders
+### Scaffold the Log Folders (Required)
 
 PowerShell (Windows):
 
@@ -132,6 +142,12 @@ echo "Session folder created: $base"
 - Ended: <ISO8601>
 - Total Duration: <hh:mm:ss>
 
+## Context
+
+- Inputs: <files or data used this session>
+- Targets: <intended output files/paths>
+- Constraints/Policies: <links to relevant instructions>
+
 ## Exchanges
 
 1. [<timestamp>] USER
@@ -145,9 +161,27 @@ echo "Session folder created: $base"
 <!-- Repeat for each exchange -->
 ```
 
+### Session Persistence and Resume
+
+- Persist the session ID for reuse during the workflow:
+  - PowerShell:
+    - `$env:AI_SESSION_ID = [guid]::NewGuid().ToString()`
+    - `Set-Content -Path .ai-session -Value $env:AI_SESSION_ID`
+  - Bash:
+    - `AI_SESSION_ID=$(uuidgen 2>/dev/null || cat /proc/sys/kernel/random/uuid)`
+    - `printf "%s" "$AI_SESSION_ID" > .ai-session`
+- Add to `conversation.md` at the end of each work burst:
+  - Artifacts produced (with relative links)
+  - Next steps / TODOs
+  - Any blockers and decisions
+- On resume after interruption:
+  - Read `.ai-session` to recover the session ID
+  - Append to the existing `conversation.md` rather than starting a new session
+
 ## Provenance Template for Non-Markdown Artifacts
 
 When front matter isn’t applicable (e.g., images, binaries), create a sidecar file: `<basename>.meta.md`.
+Do not create sidecars for Markdown (or other formats that support embedded front matter); embed the YAML front matter instead.
 
 ```markdown
 # AI-Assisted Artifact Metadata
@@ -230,6 +264,23 @@ Matching `conversation.md` header:
 - [ ] Sidecar `.meta.md` used when front matter isn’t supported.
 - [ ] Example renders correctly in Markdown preview.
 - [ ] Project `README.md` updated to reference any newly generated artifact (with link and one-line description).
+- [ ] AI log session pre-created and linked; artifacts refuse to generate until session exists.
+- [ ] conversation.md includes Context, Exchanges, Artifacts produced, and Next steps.
+
+## PR and Commit Checklist (Mandatory)
+
+- Link to the `ai-logs/yyyy/mm/dd/<session-id>/conversation.md` used.
+- Ensure each AI-assisted artifact embeds `ai_log` front matter (or references it in a sidecar only if embedding is not possible).
+- Update README “AI-Assisted Artifacts” if introducing new notable artifacts.
+- Optional: add a commit trailer `ai-log: ai-logs/yyyy/mm/dd/<session-id>/conversation.md`.
+
+## Non-Compliance and Remediation
+
+- If a PR lacks required logs or references:
+  - Scaffold `ai-logs/` session and seed `conversation.md`/`summary.md`.
+  - Add or fix front matter `ai_log` (avoid sidecars for Markdown).
+  - Update README if missing.
+  - Re-request review.
 
 ## Security and Privacy
 

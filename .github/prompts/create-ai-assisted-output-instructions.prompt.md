@@ -24,6 +24,12 @@ You are an expert technical writer. Create a clear, actionable instruction file 
 - Format strictly as Markdown with headings and lists.
 - Include a short introduction on why provenance and logging matter.
 - Provide a table of contents.
+- Include a "Before You Start (Mandatory)" section that requires pre-creating an `ai-logs/yyyy/mm/dd/<session-id>/` folder and seeding `conversation.md` and `summary.md` before generating artifacts.
+- In the AI chat logging workflow, mark scaffolding as Required (not optional) and add a "Session Persistence and Resume" subsection showing how to persist and recover the session ID and how to resume appending to `conversation.md`.
+- Update the conversation.md template to include a "Context" section (Inputs, Targets, Constraints) and require listing "Artifacts produced" and "Next steps" when closing a work burst.
+- Explicitly forbid sidecar `.meta.md` files for Markdown (or other formats that support embedded front matter); require embedded YAML for those.
+- Add a "PR and Commit Checklist (Mandatory)" and a "Non-Compliance and Remediation" section.
+- Fix the ToC label to say "conversation.md Template".
 
 ## Audience
 
@@ -35,6 +41,7 @@ You are an expert technical writer. Create a clear, actionable instruction file 
 - Define the logging workflow for conversational context and outputs.
 - Provide a template and a quality checklist.
 - Require updating the top-level README.md with a brief entry whenever this process generates a new file (what it is, where it lives, and a one-line purpose), including a link to the new artifact.
+- Provide enforcement patterns that make session scaffolding a prerequisite and block PRs until ai-logs linkage exists.
 
 ## Required provenance metadata (for every AI-assisted artifact)
 
@@ -89,7 +96,7 @@ All AI chat transcripts and key outputs must be saved under `ai-logs/` in a date
   - `summary.md` — short session summary (goals, key decisions, outcomes).
   - `artifacts/` — any generated files that aren’t directly committed elsewhere.
 
-### Scaffold the log folders (recommended)
+### Scaffold the log folders (Required)
 
 Include steps and sample commands for contributors to quickly scaffold the folder structure for a new session. Provide both PowerShell and Bash examples. These should be considered optional helpers; contributors may adapt them as needed.
 
@@ -139,6 +146,12 @@ Tip: To keep empty folders tracked by Git, you may add a `.gitkeep` file inside 
 - Ended: <ISO8601>
 - Total Duration: <hh:mm:ss>
 
+## Context
+
+- Inputs: <files>
+- Targets: <intended output files>
+- Constraints/Policies: <links>
+
 ## Exchanges
 
 1. [<timestamp>] USER
@@ -175,6 +188,8 @@ When front matter isn’t applicable (e.g., images, binaries), create a sidecar:
   - <task>: <hh:mm:ss>
 - Total Duration: <hh:mm:ss>
 - Source Conversation Log: <relative path>
+
+Note: Do not create sidecars for Markdown (or other formats that support embedded front matter); embed YAML front matter instead.
 ```
 
 ## Capturing task durations
@@ -203,6 +218,17 @@ Provide a brief filled example showing a Markdown file with front matter, and a 
 - Sensitive data not included in prompts or outputs.
 - Filenames and paths follow the conventions.
 - Project `README.md` updated to reference any newly generated artifact (with link and one-line description).
+- AI log session was created before any artifacts; artifacts link to it via `ai_log`.
+
+## PR and Commit Checklist (Mandatory)
+
+- Link to the ai-logs session used (`ai-logs/yyyy/mm/dd/<session-id>/conversation.md`).
+- Ensure each artifact embeds `ai_log` (or sidecar only when embedding is impossible).
+- Update README when introducing new notable artifacts.
+
+## Non-Compliance and Remediation
+
+- If missing logs or references, scaffold `ai-logs/`, add front matter `ai_log`, update README; then re-request review.
 
 ## Deliverable
 

@@ -1,3 +1,8 @@
+---
+ai_generated: true
+ai_log: ai-logs/2025/10/14/0b4a6d3a-1a59-4c0e-8aaf-0a7f45cbd9a2/conversation.md
+---
+
 # Derived Use Cases from academia.txt
 
 Below is the list of use cases derived from `Model/orm/academia.txt` with goals and links.

@@ -1,3 +1,8 @@
+---
+ai_generated: true
+ai_log: ai-logs/2025/10/14/0b4a6d3a-1a59-4c0e-8aaf-0a7f45cbd9a2/conversation.md
+---
+
 # Use Case: Record Degree and University for Academic
 
 - Primary Actor: Registrar
